@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  mini-server:
+    container_name: mini-server
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080"
+    volumes:
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:8080"
+    volumes:
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
